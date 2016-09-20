@@ -1,0 +1,34 @@
+{
+  "name": "koa-api-boilerplate",
+  "version": "0.0.1",
+  "description": "API Boilerplate with Koa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdslab87/koa-api-boilerplate.git"
+  },
+  "keywords": [
+    "koa"
+  ],
+  "author": "Davide MDSLab",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mdslab87/koa-api-boilerplate/issues"
+  },
+  "homepage": "https://github.com/mdslab87/koa-api-boilerplate#readme",
+  "dependencies": {
+    "es6-error": "^3.1.0",
+    "es6-promisify": "^4.1.0",
+    "koa": "^1.2.4",
+    "koa-body": "^1.5.0",
+    "koa-compress": "^1.0.9",
+    "koa-cors": "0.0.16",
+    "koa-json": "^1.1.3",
+    "koa-mount": "^1.3.0",
+    "koa-remove-trailing-slashes": "^1.0.0",
+    "koa-route": "^2.4.2"
+  }
+}
