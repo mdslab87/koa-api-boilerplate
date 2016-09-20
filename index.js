@@ -1,19 +1,21 @@
-let koa = require('koa');
-let body = require('koa-body');
-let cors = require('koa-cors');
-let compress = require('koa-compress');
-let json = require('koa-json');
-let removeTrailingSlashes = require('koa-remove-trailing-slashes');
-var mount = require('koa-mount');
+const koa = require('koa');
+const body = require('koa-body');
+const cors = require('koa-cors');
+const compress = require('koa-compress');
+const json = require('koa-json');
+const removeTrailingSlashes = require('koa-remove-trailing-slashes');
 
-let app = new koa();
+const app = new koa();
 
+const api = require('koa-router')();
 
-var indexAPI = require('./routes/index/app.js');
-var timeAPI = require('./routes/utctime/app.js');
+const welcome = require('./routes/index');
+const utctime = require('./routes/utcTime');
 
-app.use(mount('/', indexAPI));
-app.use(mount('/utc-time', timeAPI));
+api.use('/', welcome.routes());
+api.use('/utc-time', utctime.routes());
+
+app.use(api.routes());
 
 app.use(cors());
 app.use(compress());
@@ -27,6 +29,7 @@ app.use(body({
 
 app.use(removeTrailingSlashes());
 app.use(json({ pretty: true, spaces: 4 }));
+
 
 app.listen(3000);
 console.log("[*] Koa API is listening on port: 3000");

@@ -1,4 +1,9 @@
-'use strict';
+const router = require('koa-router')();
+
+router
+  .get('/', utcTime)
+
+module.exports = router;
 
 function *utcTime() {
   let now = new Date();
