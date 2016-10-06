@@ -3,8 +3,6 @@ const router = require('koa-router')();
 router
   .get('/', utcTime)
 
-module.exports = router;
-
 function *utcTime() {
   let now = new Date();
 
@@ -23,6 +21,8 @@ function *utcTime() {
   let seconds = now.getUTCSeconds();
   if (seconds < 10) seconds = "0" + seconds;
 
-  let time = `${day} \ ${month} - ${hours} : ${minutes} : ${seconds}`;
-	this.body = { "utc-time" : time };
+  let time = `${day} - ${month}  ${hours} : ${minutes} : ${seconds}`;
+	return { "utc-time" : time };
 };
+
+module.exports = router;
