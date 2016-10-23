@@ -1,7 +1,10 @@
 const router = require('koa-router')();
+const koaBody = require('koa-body')();
+let routeHandler = require('../scripts/routeHandler.js');
 
 router
-  .get('/', utcTime)
+  .get('/utcTime', utcTime)
+  .post('/test', koaBody, routeHandler(test))
 
 function *utcTime() {
   let now = new Date();
@@ -24,5 +27,10 @@ function *utcTime() {
   let time = `${day} - ${month}  ${hours} : ${minutes} : ${seconds}`;
 	return { "utc-time" : time };
 };
+
+function test({object}){
+  let result = object;
+  return result;
+}
 
 module.exports = router;

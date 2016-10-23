@@ -7,16 +7,20 @@ const removeTrailingSlashes = require('koa-remove-trailing-slashes');
 const app = new koa();
 
 const api = require('koa-router')();
+const apiRoutes = ['utcTime'];
+const corsOptions = { origin: '*', methods: 'GET,PUT,POST,DELETE', headers: 'Content-Type, Access-Control-Allow-Headers, Access-Control-Allow-Origin, Authorization, X-Requested-With'};
 
-const welcome = require('./routes/index');
-const utctime = require('./routes/utcTime');
+let index = require('./routes/index');
+api.use('/', index.routes());
 
-api.use('/', welcome.routes());
-api.use('/utc-time', utctime.routes());
+apiRoutes.forEach(function(apiRoute){
+  apiRoute = require('./routes/' + apiRoute);
+  api.use('/api', apiRoute.routes());
+});
 
 app.use(api.routes());
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(compress());
 app.use(removeTrailingSlashes());
 app.use(json({ pretty: true, spaces: 4 }));
